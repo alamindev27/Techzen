@@ -38,7 +38,7 @@
                           <tr>
                             <th>#</th>
                             <th>Color Name</th>
-                            <th>Slug</th>
+                            <th>Addon/Code</th>
                             <th>Action</th>
                           </tr>
                           </thead>
@@ -47,7 +47,10 @@
                                 <tr>
                                     <td class="align-middle">{{ ++$loop->index }}</td>
                                     <td class="align-middle"><b>{{ $color->name }}</b></td>
-                                    <td class="align-middle">{{ $color->slug }}</td>
+                                    <td class="align-middle">
+                                        <span class="mx-2">{{ $color->code }}</span>
+                                        <span style="width: 5px;height:5px; background-color:{{ $color->code }};" class="px-2">&nbsp;</span>
+                                    </td>
                                     <td class="align-middle">
                                         <form action="{{ route('color.destroy', $color->id) }}" method="POST">
                                         @csrf

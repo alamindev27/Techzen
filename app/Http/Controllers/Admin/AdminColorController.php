@@ -33,14 +33,15 @@ class AdminColorController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required | string | max:255 | unique:colors'
+            'name' => 'required | string | max:255 | unique:colors',
+            'code' => 'required | string | max:255'
         ]);
         Color::insert([
             'name' => $request->name,
-            'slug' => Str::slug($request->name),
+            'code' => $request->code,
             'created_at' => Carbon::now()
         ]);
-        return back()->with('success', 'Created Successfully');
+        return redirect()->route('color.index')->with('success', 'Created Successfully');
     }
 
     /**
@@ -56,7 +57,7 @@ class AdminColorController extends Controller
      */
     public function edit(string $id)
     {
-        $color = Color::where('id', 1)->first();
+        $color = Color::where('id', $id)->first();
         return view('admin.color.edit', compact('color'));
     }
 
@@ -65,15 +66,16 @@ class AdminColorController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $color = Color::where('id', 1)->first();
+        $color = Color::where('id', $id)->first();
         $request->validate([
-            'name' => 'required | string | max:255 | unique:color,name,'.$color->id.',id'
+            'name' => 'required | string | max:255 | unique:colors,name,'.$color->id.',id',
+            'code' => 'required | string | max:255'
         ]);
-        $color->udpate([
+        $color->update([
             'name' => $request->name,
-            'slug' => Str::slug($request->name),
+            'code' => $request->code,
         ]);
-        return back()->with('success', 'Updated Successfully');
+        return redirect()->route('color.index')->with('success', 'Updated Successfully');
     }
 
     /**
@@ -81,7 +83,7 @@ class AdminColorController extends Controller
      */
     public function destroy(string $id)
     {
-        $color = Color::where('id', 1)->first();
+        $color = Color::where('id', $id)->first();
         $color->delete();
         return back()->with('success', 'Deleted Successfully');
     }
