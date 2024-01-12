@@ -26,12 +26,14 @@ return new class extends Migration
             $table->integer('stock');
             $table->unsignedBigInteger('brand_id');
             $table->unsignedBigInteger('category_id');
-            $table->unsignedBigInteger('sub_category_id');
+            $table->unsignedBigInteger('sub_category_id')->nullable();
             $table->float('shiping_charge');
             $table->unsignedBigInteger('color_id');
             $table->string('sku')->nullable();
             $table->string('thumbnails');
             $table->string('status');
+            $table->string('meta_keywords')->nullable();
+            $table->string('focus_keywords')->nullable();
             $table->timestamps();
         });
     }

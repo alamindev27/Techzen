@@ -195,8 +195,33 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-4">
 
+
+
+                                    <div class="col-lg-4">
+                                        <div class="form-group" data-select2-id="29">
+                                            <label>Meta Keywords</label>
+                                            <input type="text" class="form-control" name="meta_keywords" placeholder="Enter meta keywords">
+                                            @error('meta_keywords')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                          </div>
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                        <div class="form-group" data-select2-id="29">
+                                            <label>Focus Keywords</label>
+                                            <input type="text" class="form-control" name="fous_keywords" placeholder="Enter meta keywords">
+                                            @error('fous_keywords')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                          </div>
+                                    </div>
+
+
+
+
+                                    <div class="col-lg-4">
                                         <div class="form-group" data-select2-id="29">
                                             <label>Color</label>
                                             <select name="color" class="select2bs4 select2-hidden-accessible" multiple="" data-placeholder="Select Color" style="width: 100%;" data-select2-id="23" tabindex="-1" aria-hidden="true">
@@ -210,36 +235,42 @@
                                           </div>
                                     </div>
 
-                                    {{-- <div class="col-lg-4">
-                                        <div class="form-group">
-                                            <label for="sku">SKU</label>
-                                            <input type="text" name="sku" class="form-control"
-                                                placeholder="Enter sku">
-                                            @error('sku')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div> --}}
+                                    <div class="col-lg-4">
+
+                                    </div>
+
+
 
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label for="thumbnails">Product Thubnails <span
-                                                    class="text-danger">*</span></label>
-                                            <input type="file" name="thumbnails" class="form-control">
+                                            <label for="thumbnails">Product Thubnails <span class="text-danger">*</span></label>
+                                            <input type="file" accept="image/png, image/jpeg, image/jpg" name="thumbnails" class="form-control" onchange="document.getElementById('image_id').src = window.URL.createObjectURL(this.files[0])">
                                             @error('thumbnails')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
+                                        <div class="text-center">
+                                            <img src="" id="image_id" alt="Product Thumbnails" class="img-fluid border rounded p-1 mt-2" width="100">
+                                        </div>
                                     </div>
+
+
+
+
+
+
+
+
 
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label for="gullury">Product Gallury <span
-                                                    class="text-danger">*</span></label>
-                                            <input type="file" name="gullury" class="form-control" multiple>
-                                            @error('gullury')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
+                                            <label for="exampleInputFile">Product Gallury</label>
+                                            <div class="input-group mb-30" id="before">
+                                                <input type="file" class="form-control" name="galluries[]">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text text-success" id="add_gallury" style="cursor: pointer;"><i class="fa fa-plus"></i></span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -272,6 +303,37 @@
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
     <script src="{{ asset('assets/plugins/select2/js/select2.full.min.js') }}"></script>
 
+    <script>
+        $('#add_gallury').click(function(){
+            $('#before').after(`
+            <div class="input-group mt-3">
+                <input type="file" class="form-control" name=galluries[]>
+                <div class="input-group-append">
+                    <span class="input-group-text text-danger" onclick="remove_gallury(this)" style="cursor: pointer;"><i class="fa fa-trash"></i></span>
+                </div>
+            </div>
+            `);
+        });
+    </script>
+    <script>
+        function remove_gallury(el){
+            var parent = $(el).parent();
+            var beforeParent = $(el).parent(parent);
+            $(beforeParent).parent().remove()
+        }
+
+
+        // $('#add_gallury').click(function(){
+        //     $('#before').after(`
+        //     <div class="input-group mt-3">
+        //         <input type="file" class="form-control">
+        //         <div class="input-group-append">
+        //             <span class="input-group-text" onclick="remove_gallury(this)" style="cursor: pointer;"><i class="fa fa-trash"></i></span>
+        //         </div>
+        //     </div>
+        //     `);
+        // });
+    </script>
 
     <script>
         $(function() {

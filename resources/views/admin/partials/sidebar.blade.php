@@ -168,15 +168,42 @@
 
 
 
-          <li class="nav-item has-treeview {{ Request::url() == route('brand.create') || Request::url() == route('brand.index') || Request::url() == route('color.create') || Request::url() == route('color.index')  ? 'menu-open' : '' }}">
-            <a href="#" class="nav-link  {{ Request::url() == route('brand.create') || Request::url() == route('brand.index') || Request::url() == route('color.create') || Request::url() == route('color.index')  ? 'active' : '' }}">
+          <li class="nav-item has-treeview {{ Request::url() == route('brand.create') || Request::url() == route('brand.index') || Request::url() == route('color.create') || Request::url() == route('color.index') || Request::url() == route('attributes.create') || Request::url() == route('attributes.index')  ? 'menu-open' : '' }}">
+            <a href="#" class="nav-link  {{ Request::url() == route('brand.create') || Request::url() == route('brand.index') || Request::url() == route('color.create') || Request::url() == route('color.index') || Request::url() == route('attributes.create') || Request::url() == route('attributes.index')  ? 'active' : '' }}">
               <i class="nav-icon fas fa-circle"></i>
               <p>
                 Attributes
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview " style="{{ Request::url() == route('brand.create') || Request::url() == route('brand.index') || Request::url() == route('color.create') || Request::url() == route('color.index') ? 'display:block' : 'display:none' }}">
+            <ul class="nav nav-treeview " style="{{ Request::url() == route('attributes.create') || Request::url() == route('attributes.index') ? 'display:block' : 'display:none' }}">
+
+              <li class="nav-item has-treeview {{ Request::url() == route('attributes.create') || Request::url() == route('attributes.index')  ? 'menu-open' : '' }}">
+                <a href="#" class="nav-link {{ Request::url() == route('attributes.create') || Request::url() == route('attributes.index')  ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>
+                    Attributes
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <a href="{{ route('attributes.create') }}" class="nav-link {{ Request::url() == route('attributes.create') ? 'active' : '' }}">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Add Attributes</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="{{ route('attributes.index') }}" class="nav-link {{ Request::url() == route('attributes.index') ? 'active' : '' }}">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>List Attributes</p>
+                      </a>
+                    </li>
+                  </ul>
+              </li>
+
+
+
               <li class="nav-item has-treeview {{ Request::url() == route('brand.create') || Request::url() == route('brand.index')  ? 'menu-open' : '' }}">
                 <a href="#" class="nav-link {{ Request::url() == route('brand.create') || Request::url() == route('brand.index')  ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
@@ -201,6 +228,7 @@
                   </ul>
               </li>
 
+
               <li class="nav-item has-treeview {{ Request::url() == route('color.create') || Request::url() == route('color.index') ? 'menu-open' : '' }}">
                 <a href="#" class="nav-link {{ Request::url() == route('color.create') || Request::url() == route('color.index') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
@@ -224,8 +252,22 @@
                   </li>
                 </ul>
               </li>
+
+              @foreach (attributes() as $attribute)
+              <li class="nav-item">
+                <a href="{{ route('admin.attribute.addNew', $attribute->id) }}" class="nav-link {{ Request::url() == route('admin.attribute.addNew', $attribute->id) ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{ $attribute->name }}</p>
+                </a>
+              </li>
+              @endforeach
+
+
             </ul>
           </li>
+
+
+
 
           <li class="nav-item has-treeview {{ Request::url() == route('coupon.create') || Request::url() == route('coupon.index') ? 'menu-open' : '' }}">
             <a href="#" class="nav-link {{ Request::url() == route('coupon.create') || Request::url() == route('coupon.index') ? 'active' : '' }}">

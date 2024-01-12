@@ -29,6 +29,8 @@ class Product extends Model
         'thumbnails',
         'gullury',
         'status',
+        'meta_keywords',
+        'focus_keywords',
     ];
 
     public function productWithCategoryRelation() {

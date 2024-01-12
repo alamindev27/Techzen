@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminAttributeController;
 use App\Http\Controllers\Admin\AdminBannerController;
 use App\Http\Controllers\Admin\AdminBrandController;
 use App\Http\Controllers\Admin\AdminCategoryController;
@@ -79,6 +80,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'is_admin']], functi
     Route::resource('color', AdminColorController::class);
     Route::resource('coupon', AdminCouponController::class);
     Route::resource('banner', AdminBannerController::class);
+    Route::resource('attributes', AdminAttributeController::class);
+    Route::get('/attribute/{id}/add-new', [AdminAttributeController::class, 'addNewAttributes'])->name('admin.attribute.addNew');
+    Route::post('/attribute/{id}/store-new', [AdminAttributeController::class, 'storeNewAttributes'])->name('admin.attribute.storeNew');
+    Route::get('/varient/{id}/edit', [AdminAttributeController::class, 'varientEdit'])->name('admin.varient.edit');
+    Route::post('/varient/{id}/update', [AdminAttributeController::class, 'varientUpdate'])->name('admin.varient.update');
+    Route::get('/varient/{id}/delete', [AdminAttributeController::class, 'varientDelete'])->name('admin.varient.delete');
 
 
 
