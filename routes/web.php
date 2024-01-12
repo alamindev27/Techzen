@@ -58,6 +58,11 @@ Route::get('/', [FrontnedContrller::class, 'index'])->name('frontend.index');
 // Admin Routes
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'is_admin']], function(){
     Route::get('/dashboard', [AdminHomeController::class, 'index'])->name('admin.index');
+    Route::get('/customars', [AdminHomeController::class, 'listCustomar'])->name('admin.customar.index');
+    Route::get('/customar/create', [AdminHomeController::class, 'createCustomar'])->name('admin.customar.create');
+    Route::post('/customar/store', [AdminHomeController::class, 'storeCustomar'])->name('admin.customar.store');
+    Route::get('/customar/{id}/edit', [AdminHomeController::class, 'editCustomar'])->name('admin.customar.edit');
+    Route::post('/customar/{id}/Update', [AdminHomeController::class, 'UpdateCustomar'])->name('admin.customar.update');
 
     // Admin Setting Routes
     Route::get('/site-setting', [AdminSettingController::class, 'siteSetting'])->name('admin.setting.site');

@@ -31,6 +31,30 @@
             </a>
           </li>
 
+          <li class="nav-item has-treeview {{ Request::url() == route('admin.customar.index') || Request::url() == route('admin.customar.create') ? 'menu-open' : '' }}">
+            <a href="#" class="nav-link {{ Request::url() == route('admin.customar.index') || Request::url() == route('admin.customar.create') ? 'active' : '' }}">
+              <i class="nav-icon far fa-chart-bar"></i>
+              <p>
+                Customar's
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('admin.customar.create') }}" class="nav-link {{ Request::url() == route('admin.customar.create') ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add Customar</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('admin.customar.index') }}" class="nav-link {{ Request::url() == route('admin.customar.index') ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>All Customar</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
           <li class="nav-item has-treeview {{ Request::url() == route('banner.create') || Request::url() == route('banner.index') ? 'menu-open' : '' }}">
             <a href="#" class="nav-link {{ Request::url() == route('banner.create') || Request::url() == route('banner.index') ? 'active' : '' }}">
               <i class="nav-icon far fa-chart-bar"></i>
