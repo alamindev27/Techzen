@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Attribute;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Color;
@@ -32,7 +33,8 @@ class AdminProductController extends Controller
         $categories = Category::where('status', 'active')->orderBy('category_name', 'ASC')->get();
         $brands = Brand::all();
         $colors = Color::all();
-        return view('admin.product.create', compact('categories', 'brands', 'colors'));
+        $attributes = Attribute::all();
+        return view('admin.product.create', compact('categories', 'brands', 'colors', 'attributes'));
     }
 
     public function getSubCategory(Request $request) {
