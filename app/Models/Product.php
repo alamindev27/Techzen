@@ -31,6 +31,7 @@ class Product extends Model
         'status',
         'meta_keywords',
         'focus_keywords',
+        'low_stock_alert',
     ];
 
     public function productWithCategoryRelation() {

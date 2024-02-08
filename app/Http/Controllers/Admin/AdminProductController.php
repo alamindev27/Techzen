@@ -64,6 +64,7 @@ class AdminProductController extends Controller
             'category' => 'required | numeric',
             // 'sub_category' => 'required | numeric',
             'shiping_charge' => 'required | numeric | min:1',
+            'low_stock_alert' => 'required | numeric | min:1',
             // 'color' => 'required | numeric',
             'thumbnails' => 'required | image | mimes:jpg,jpg,jpeg',
             'gullury.*' => 'required | image | mimes:jpg,jpg,jpeg',
@@ -90,7 +91,8 @@ class AdminProductController extends Controller
             'category_id' => $request->category,
             'sub_category_id' => $request->sub_category,
             'shiping_charge' => $request->shiping_charge,
-            'color_id' => $request->color,
+            'low_stock_alert' => $request->low_stock_alert,
+            // 'color_id' => $request->color,
             'thumbnails' => $path1.$fileName1,
             'thumbnails' => $path1.$fileName1,
             'sku' => 123,
@@ -98,15 +100,15 @@ class AdminProductController extends Controller
             'created_at' => Carbon::now()
         ]);
 
-        $images = $request->gullury;
+        $images = $request->galluries;
         foreach ($images as $key => $singleImage) {
             $file = $request->file('gullury');
             $fileName2 = time().'-gullury.'.$singleImage->getClientOriginalExtension();
             $path2 = 'assets/uploads/';
-            $request->$singleImage->move($path2, $fileName2);
+            $singleImage->move($path2, $fileName2);
             ProductGallury::insert([
                 'product_id' => $productId,
-                'gullury' => $path2.$fileName2,
+                'images' => $path2.$fileName2,
                 'created_at' => Carbon::now()
             ]);
         }

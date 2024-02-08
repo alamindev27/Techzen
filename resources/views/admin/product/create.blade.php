@@ -230,29 +230,38 @@
                                         </div>
                                     </div>
 
-
-
-
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-12">
                                         <div class="form-group" data-select2-id="29">
-                                            <label>Color</label>
-                                            <select name="color" class="select2bs4 select2-hidden-accessible"
-                                                multiple="" data-placeholder="Select Color" style="width: 100%;"
-                                                data-select2-id="23" tabindex="-1" aria-hidden="true">
-                                                @foreach ($colors as $color)
-                                                    <option {{ old('color') == $color->id ? 'selected' : '' }}
-                                                        data-select2-id="{{ $color->id }}"
-                                                        value="{{ $color->id }}">{{ $color->name }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('color')
+                                            <label>Low Stok Product</label>
+                                            <input type="number" class="form-control" name="low_stock_alert"
+                                                placeholder="Enter meta keywords">
+                                            @error('low_stock_alert')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </div>
 
 
-                                    <div class="row">
+
+
+                                    {{-- <div class="col-lg-4">
+                                        <div class="form-group" data-select2-id="29">
+                                            <label>Color</label>
+                                            <select name="color" class="select2bs4 select2-hidden-accessible"
+                                                multiple="" data-placeholder="Select Color" style="width: 100%;"
+                                                data-select2-id="23" tabindex="-1" aria-hidden="true">
+                                                @foreach ($colors as $color)
+                                                    <option {{ old('color') == $color->id ? 'selected' : '' }} data-select2-id="{{ $color->id }}" value="{{ $color->id }}">{{ $color->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('color')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div> --}}
+
+
+                                    {{-- <div class="row">
                                         <div class="form-group col-md-12"
                                             style="margin-bottom: 5px;border:1px solid gainsboro;">
                                             <label style="display: block;" for="color"> <button style="width: 100%;text-align:left;" type="button" data-toggle="collapse" data-target="#collapseExampleColor" aria-expanded="false" aria-controls="collapseExampleColor" class="collapsed">Select Color:<i style="float: right;top: 8px;position: relative;" class="fas fa-arrow-down"></i> </button></label>
@@ -316,7 +325,7 @@
 
 
 
-                                    </div>
+                                    </div> --}}
 
 
 
